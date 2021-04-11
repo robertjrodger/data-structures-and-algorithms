@@ -1,4 +1,3 @@
-from typing import Optional
 from collections import namedtuple
 
 

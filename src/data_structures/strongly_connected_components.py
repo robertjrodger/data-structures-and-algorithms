@@ -1,7 +1,6 @@
-from data_structures import Digraph
 from algorithms import TopologicalSorter
+from data_structures import Digraph
 from data_structures import Vertex
-
 
 Component = int
 
