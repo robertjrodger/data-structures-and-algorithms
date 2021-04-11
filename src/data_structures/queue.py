@@ -1,4 +1,5 @@
 from typing import Optional
+from collections import deque
 
 
 class Node:
@@ -36,3 +37,20 @@ class Queue:
 
     def is_empty(self):
         return self.size == 0
+
+
+class DequeQueue:
+    def __init__(self):
+        self.deque: deque = deque()
+
+    def enqueue(self, item):
+        self.deque.appendleft(item)
+
+    def is_empty(self):
+        return len(self.deque) == 0
+
+    def dequeue(self):
+        if self.is_empty():
+            return None
+        else:
+            return self.deque.pop()

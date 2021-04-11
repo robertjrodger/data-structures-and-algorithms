@@ -1,4 +1,5 @@
 from typing import Optional
+from collections import deque
 
 
 class Node:
@@ -27,3 +28,20 @@ class Stack:
             self.head = self.head.next
             self.size -= 1
             return item
+
+
+class DequeStack:
+    def __init__(self):
+        self.deque: deque = deque()
+
+    def push(self, item):
+        self.deque.append(item)
+
+    def pop(self):
+        if self.is_empty():
+            return None
+        else:
+            return self.deque.pop()
+
+    def is_empty(self):
+        return len(self.deque) == 0
