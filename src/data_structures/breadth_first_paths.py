@@ -1,5 +1,6 @@
 from data_structures import Graph
 from data_structures import Queue
+from data_structures import Stack
 from data_structures import Vertex
 
 
@@ -34,17 +35,16 @@ class BreadthFirstPaths:
             return
         return target in self.marked
 
-    def path_to(self, target: Vertex):
+    def path_to(self, target: Vertex) -> Stack:
         if not self.initialized:
             print("Must be initialized first!")
             return
         if not self.has_path_to(target):
             return None
-        path = [target]
+        path = Stack()
         current_vertex = target
+        path.push(current_vertex)
         while (current_vertex := self.edge_to[current_vertex]) != self.source:
-            path.append(current_vertex)
-        path.append(self.source)
-        path.reverse()
+            path.push(current_vertex)
+        path.push(self.source)
         return path
-
