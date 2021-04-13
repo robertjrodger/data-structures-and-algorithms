@@ -29,17 +29,17 @@ class BinarySearchTree:
     def put(self, key, value):
         self.root = self._put(self.root, key, value)
 
-    def _put(self, current_node, key, value):
-        if current_node is None:
+    def _put(self, current, key, value):
+        if current is None:
             return Node(key, value)
-        elif current_node.key > key:
-            current_node.left = self._put(current_node.left, key, value)
-        elif current_node.key < key:
-            current_node.right = self._put(current_node.right, key, value)
+        elif current.key > key:
+            current.left = self._put(current.left, key, value)
+        elif current.key < key:
+            current.right = self._put(current.right, key, value)
         else:
-            current_node.value = value
-        current_node.count = 1 + self._size(current_node.left) + self._size(current_node.right)
-        return current_node
+            current.value = value
+        current.count = 1 + self._size(current.left) + self._size(current.right)
+        return current
 
     def get(self, key):
         current = self.root
@@ -58,27 +58,27 @@ class BinarySearchTree:
     def min(self):
         if self.root is None:
             return None
-        current_node = self.root
-        while current_node.left is not None:
-            current_node = current_node.left
-        return current_node.key
+        current = self.root
+        while current.left is not None:
+            current = current.left
+        return current.key
 
     def max(self):
         if self.root is None:
             return None
-        current_node = self.root
-        while current_node.right is not None:
-            current_node = current_node.right
-        return current_node.key
+        current = self.root
+        while current.right is not None:
+            current = current.right
+        return current.key
 
     def size(self):
         return self._size(self.root)
 
-    def _size(self, current_node):
-        if current_node is None:
+    def _size(self, current):
+        if current is None:
             return 0
         else:
-            return current_node.count
+            return current.count
 
     def floor(self, key):
         "Biggest BST key that is smaller than or equal to given key"
@@ -88,19 +88,19 @@ class BinarySearchTree:
         else:
             return floor_node.key
 
-    def _floor(self, current_node, key):
-        if current_node is None:
+    def _floor(self, current, key):
+        if current is None:
             return None
-        elif current_node.key == key:
-            return current_node
-        elif current_node.key > key:
-            return self._floor(current_node.left, key)
+        elif current.key == key:
+            return current
+        elif current.key > key:
+            return self._floor(current.left, key)
         else:
-            right_floor_node = self._floor(current_node.right, key)
+            right_floor_node = self._floor(current.right, key)
             if right_floor_node is not None:
                 return right_floor_node
             else:
-                return current_node
+                return current
 
     def ceil(self, key):
         "Smallest BST key that is larger than or equal to given key"
@@ -110,42 +110,50 @@ class BinarySearchTree:
         else:
             return ceil_node.key
 
-    def _ceil(self, current_node, key):
-        if current_node is None:
+    def _ceil(self, current, key):
+        if current is None:
             return None
-        elif current_node.key == key:
-            return current_node
-        elif current_node.key < key:
-            return self._ceil(current_node.right, key)
+        elif current.key == key:
+            return current
+        elif current.key < key:
+            return self._ceil(current.right, key)
         else:
-            left_ceil_node = self._ceil(current_node.left, key)
+            left_ceil_node = self._ceil(current.left, key)
             if left_ceil_node is not None:
                 return left_ceil_node
             else:
-                return current_node
+                return current
 
     def rank(self, key):
         "Number of nodes less than the key"
         return self._rank(self.root, key)
 
-    def _rank(self, current_node, key):
-        if current_node is None:
+    def _rank(self, current, key):
+        if current is None:
             return 0
-        elif current_node.key == key:
-            return self._size(current_node.left)
-        elif current_node.key > k:
-            return self._rank(current_node.left, key)
+        elif current.key == key:
+            return self._size(current.left)
+        elif current.key > k:
+            return self._rank(current.left, key)
         else:
-            return 1 + self._size(current_node.left) + self._rank(current_node.right)
+            return 1 + self._size(current.left) + self._rank(current.right)
 
     def get_ordered_keys(self):
         ordered_keys = []
         return self._get_ordered_keys(self.root, ordered_keys)
 
-    def _get_ordered_keys(self, current_node, ordered_keys):
-        if current_node is None:
+    def _get_ordered_keys(self, current, ordered_keys):
+        if current is None:
             return ordered_keys
-        ordered_keys = self._get_ordered_keys(current_node.left, ordered_keys)
-        ordered_keys.append(current_node.key)
-        ordered_keys = self._get_ordered_keys(current_node.right, ordered_keys)
+        ordered_keys = self._get_ordered_keys(current.left, ordered_keys)
+        ordered_keys.append(current.key)
+        ordered_keys = self._get_ordered_keys(current.right, ordered_keys)
         return ordered_keys
+
+    def reverse(self):
+        self.root = self._reverse(self.root)
+
+    def _reverse(self, current):
+        if current is not None:
+            current.left, current.right = self._reverse(current.right), self._reverse(current.left)
+        return current
