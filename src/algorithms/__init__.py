@@ -1,3 +1,4 @@
+from algorithms.binary_searcher import BinarySearcher
 from algorithms.insertion_sorter import InsertionSorter
 from algorithms.knuth_shuffle import KnuthShuffler
 from algorithms.merge_sorter import MergeSorter
