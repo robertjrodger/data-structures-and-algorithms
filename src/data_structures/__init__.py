@@ -8,6 +8,7 @@ from data_structures.graph import Graph
 from data_structures.graph import Vertex
 from data_structures.interval_search_tree import IntervalSearchTree
 from data_structures.lru_cache import LRUCache
+from data_structures.lru_cache import OrderedDictLRUCache
 from data_structures.max_priority_queue import MaxPriorityQueue
 from data_structures.queue import DequeQueue
 from data_structures.queue import Queue

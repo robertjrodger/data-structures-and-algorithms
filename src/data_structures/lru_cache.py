@@ -1,3 +1,6 @@
+from collections import OrderedDict
+
+
 class Node:
     def __init__(self, key, value):
         self.key = key
@@ -73,3 +76,25 @@ class LRUCache:
             return value
         else:
             return None
+
+
+class OrderedDictLRUCache:
+    def __init__(self, max_size: int):
+        self.max_size = max_size
+        self.cache: OrderedDict = OrderedDict()
+
+    def get(self, key):
+        if key in self.cache:
+            value = self.cache[key]
+            self.cache.move_to_end(key)
+            return value
+        else:
+            return None
+
+    def put(self, key, value):
+        if key in self.cache:
+            self.cache.move_to_end(key)
+        self.cache[key] = value
+        if len(self.cache) > self.max_size:
+            oldest = next(iter(self.cache))
+            del self.cache[oldest]
