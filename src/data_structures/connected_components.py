@@ -1,5 +1,5 @@
-from data_structures import Graph
-from data_structures import Vertex
+from data_structures.graph import Graph
+from data_structures.graph import Vertex
 
 
 Component = int

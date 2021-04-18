@@ -1,7 +1,7 @@
-from data_structures import Graph
-from data_structures import Queue
-from data_structures import Stack
-from data_structures import Vertex
+from data_structures.graph import Graph
+from data_structures.graph import Vertex
+from data_structures.queue import Queue
+from data_structures.stack import Stack
 
 
 class BreadthFirstPaths:
