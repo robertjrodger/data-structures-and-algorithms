@@ -8,7 +8,7 @@ Possible improvements:
         + If so, just concatenate
 """
 def merge_sort(array):
-    if len(array) == 1:
+    if len(array) < 2:
         return array
     elif len(array) == 2:
         if array[0] > array[1]:
