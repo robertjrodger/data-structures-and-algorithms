@@ -35,6 +35,8 @@ def sort(array):
             j -= 1
         if i < j:
             swap(array, i, j)
+            i += 1
+            j -= 1
         else:
             break
     swap(array, 0, j)
