@@ -27,4 +27,4 @@ def left_is_smaller(array, idx):
 
 
 def exchange_with_left(array, idx):
-    array[idx], array[idx - 1] = array[indx - 1], array[idx]
+    array[idx], array[idx - 1] = array[idx - 1], array[idx]
